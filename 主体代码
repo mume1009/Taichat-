@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tailchat群下载</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 100%;
+            height: 100%;
+            padding: 20px;
+            background-color: #2d2d2d;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            display: flex;
+            flex-direction: column;
+        }
+        h1 {
+            text-align: center;
+            color: #ccc;
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #5a5a5a;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #777;
+        }
+        .file-item {
+            margin: 10px 0;
+            padding: 15px;
+            background-color: #444;
+            border-radius: 4px;
+            display: flex;
+            flex-direction: column;
+        }
+        .file-item span {
+            font-size: 1.1em;
+            font-weight: bold;
+        }
+        .file-description {
+            color: #aaa;
+            margin: 5px 0;
+        }
+        .file-actions {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>tailchat群下载</h1>
+    <input type="text" id="searchBox" placeholder="搜索项目..." onkeyup="filterFiles()">
+    <div id="fileList">
+        <div class="file-item">
+            <span>测试文件</span>
+            <div class="file-description">测试测试测试测试</div>
+            <div class="file-actions">
+                <button onclick="downloadFile('测试文件.txt')">下载</button>
+            </div>
+        </div>
+        <div class="file-item">
+            <span>bcm作品评论</span>
+            <div class="file-description">bcm作品评论</div>
+            <div class="file-actions">
+                <button onclick="downloadFile('bcm作品评论.py')">下载</button>
+            </div>
+        </div>
+        <div class="file-item">
+            <span>流星的致信</span>
+            <div class="file-description">致信</div>
+            <div class="file-actions">
+                <button onclick="downloadFile('流星的致信.txt')">下载</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function downloadFile(fileName) {
+        window.location.href = 'path/to/' + fileName;
+    }
+
+    function filterFiles() {
+        const input = document.getElementById('searchBox');
+        const filter = input.value.toLowerCase();
+        const fileList = document.getElementById('fileList');
+        const fileItems = fileList.getElementsByClassName('file-item');
+
+        for (let i = 0; i < fileItems.length; i++) {
+            const fileName = fileItems[i].getElementsByTagName("span")[0].innerText;
+            const fileDescription = fileItems[i].getElementsByClassName("file-description")[0].innerText;
+            if (fileName.toLowerCase().indexOf(filter) > -1 || fileDescription.toLowerCase().indexOf(filter) > -1) {
+                fileItems[i].style.display = "";
+            } else {
+                fileItems[i].style.display = "none";
+            }
+        }
+    }
+</script>
+</body>
+</html>
