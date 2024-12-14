@@ -80,49 +80,47 @@
     <input type="text" id="searchBox" placeholder="搜索项目..." onkeyup="filterFiles()">
     <div id="fileList">
         <div class="file-item">
-            <span>测试文件.txt</span>
+            <span>测试文件</span>
             <div class="file-description">测试测试测试测试</div>
             <div class="file-actions">
-                <button onclick="downloadFile('测试文件.txt')">下载</button>
+                <button onclick="downloadFile('测试文件.txt')" id="1">下载</button>
             </div>
         </div>
         <div class="file-item">
-            <span>bcm作品评论.py</span>
+            <span>bcm作品评论</span>
             <div class="file-description">bcm作品评论</div>
             <div class="file-actions">
-                <button onclick="downloadFile('bcm作品评论.py')">下载</button>
+                <button onclick="downloadFile('bcm作品评论.py')" id="2">下载</button>
             </div>
         </div>
         <div class="file-item">
-            <span>流星的致信.txt</span>
+            <span>流星的致信</span>
             <div class="file-description">致信</div>
             <div class="file-actions">
-                <button onclick="downloadFile('流星的致信.txt')">下载</button>
+                <button onclick="downloadFile('流星的致信.txt')" id="3">下载</button>
             </div>
         </div>
     </div>
 </div>
 <script>
-    function downloadFile(fileName) {
-        window.location.href = 'path/to/' + fileName;
-    }
-
-    function filterFiles() {
-        const input = document.getElementById('searchBox');
-        const filter = input.value.toLowerCase();
-        const fileList = document.getElementById('fileList');
-        const fileItems = fileList.getElementsByClassName('file-item');
-
-        for (let i = 0; i < fileItems.length; i++) {
-            const fileName = fileItems[i].getElementsByTagName("span")[0].innerText;
-            const fileDescription = fileItems[i].getElementsByClassName("file-description")[0].innerText;
-            if (fileName.toLowerCase().indexOf(filter) > -1 || fileDescription.toLowerCase().indexOf(filter) > -1) {
-                fileItems[i].style.display = "";
-            } else {
-                fileItems[i].style.display = "none";
-            }
-        }
-    }
+    document.getElementById('1').addEventListener('click', function() {
+                const link = document.createElement('a');
+                link.href = '测试文件.txt';
+                link.download = '测试文件.txt';
+                link.click();
+        });
+    document.getElementById('2').addEventListener('click', function() {
+                const link = document.createElement('a');
+                link.href = 'bcm作品评论.py';
+                link.download = 'bcm作品评论.py';
+                link.click();
+        });
+    document.getElementById('3').addEventListener('click', function() {
+                const link = document.createElement('a');
+                link.href = '流星的致信.txt';
+                link.download = '流星的致信.txt';
+                link.click();
+        });
 </script>
 </body>
 </html>
