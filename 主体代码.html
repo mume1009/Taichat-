@@ -121,6 +121,22 @@
                 link.download = '流星的致信.txt';
                 link.click();
         });
+    function filterFiles() {
+        const input = document.getElementById('searchBox');
+        const filter = input.value.toLowerCase();
+        const fileList = document.getElementById('fileList');
+        const fileItems = fileList.getElementsByClassName('file-item');
+
+        for (let i = 0; i < fileItems.length; i++) {
+            const fileName = fileItems[i].getElementsByTagName("span")[0].innerText;
+            const fileDescription = fileItems[i].getElementsByClassName("file-description")[0].innerText;
+            if (fileName.toLowerCase().indexOf(filter) > -1 || fileDescription.toLowerCase().indexOf(filter) > -1) {
+                fileItems[i].style.display = "";
+            } else {
+                fileItems[i].style.display = "none";
+            }
+        }
+    
 </script>
 </body>
 </html>
